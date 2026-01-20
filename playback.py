@@ -1,0 +1,1 @@
+print(input("Hey, what do you want to tell me?" ).replace(" ", "..."))
