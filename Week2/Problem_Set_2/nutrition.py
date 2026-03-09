@@ -31,8 +31,8 @@ item_set = {
 
 def main():
     user_input = input("Item: ").lower()
-    if user_input in item_set == True:
-        print(f"Calories: {item_set[fruit]}")
+    if user_input in item_set:
+        print(f"Calories: {item_set[user_input]}")
 
 
 
