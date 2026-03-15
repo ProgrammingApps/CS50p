@@ -23,7 +23,6 @@ def grocery_list():
         except EOFError:
             for item in sorted(food_list):
                 print(f"{food_list[item]} {item}")
-            break
 
 
 main()
