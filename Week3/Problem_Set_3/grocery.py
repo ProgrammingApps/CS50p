@@ -15,7 +15,7 @@ def grocery_list():
     food_list = {}
     while True:
         try:
-            item = input("").upper()
+            item = input().upper()
             if item in food_list:
                 food_list[item] = food_list[item] + 1
             else:
@@ -23,6 +23,7 @@ def grocery_list():
         except EOFError:
             for item in sorted(food_list):
                 print(f"{food_list[item]} {item}")
+            break
 
 
 main()
