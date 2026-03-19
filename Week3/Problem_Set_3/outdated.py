@@ -28,3 +28,73 @@ Then output that same date in YYYY-MM-DD format.
 If the user’s input is not a valid date in either format, prompt the user again. 
 Assume that every month has no more than 31 days; no need to validate whether a month has 28, 29, 30, or 31 days.
 """
+
+#Recall that a str comes with quite a few methods, per docs.python.org/3/library/stdtypes.html#string-methods, including split.
+#Recall that a list comes with quite a few methods, per docs.python.org/3/tutorial/datastructures.html#more-on-lists, among which is index.
+#Note that you can format an int with leading zeroes with code like
+#print(f"{n:02}")
+
+#psudo logic:
+"""
+input will be x/x/xxxx where x are numbers.
+Needs to output YYYY-MM-DD, where y is years, m is months and d is days.
+
+Ask for the input date
+Split this input date into days, months and years.
+Checks if the month is alphabetical.
+If it is, convert the month into a number
+otherwise, 
+make sure the list is indexed + 1.
+then we can re-order it into YYYY-MM-DD
+
+
+
+"""
+
+def main():
+    final_date = outdated()
+    print(final_date)
+    
+
+def outdated():
+    months = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+    ]
+    while True:
+        try:
+            user_input = input("Date: ").strip() #This will get us a string like MM/DD/YYYY
+            if "," in user_input: #Convert something like September 8, 1636 into Month, Day, year.
+                user_input = user_input.replace(",", "")
+                month, day, year = user_input.split(" ")
+                month = months.index(month) + 1
+                day = int(day)
+                if not (1 <= month <= 12 and 1 <= day <= 31):
+                    continue
+                return(f"{year}-{month:02}-{day:02}")
+            else:
+                month, day, year = user_input.split("/") #So you'll get the month, day and year numbers.
+                month = int(month)
+                day = int(day)
+                if not (1 <= month <= 12 and 1<= day <= 31):
+                    continue
+                return(f"{year}-{month:02}-{day:02}")
+        except ValueError:
+            print("Unknown value, try again")
+            continue
+
+main()
+
+
+
+
