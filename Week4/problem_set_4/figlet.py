@@ -13,8 +13,8 @@ import pyfiglet
 import random
 
 def main():
-    response = input("Input: ")
     if len(sys.argv) == 1: #python pyfiglet.py - RANDOM FONT
+        response = input("Input: ")
         style_choice = random.choice(pyfiglet.FigletFont.getFonts())
         f = pyfiglet.Figlet(font=style_choice)
         print(f.renderText(response))
@@ -23,6 +23,7 @@ def main():
             sys.exit("Expecting either -f or --font for the first argument")
         if sys.argv[2] not in pyfiglet.FigletFont.getFonts():
             sys.exit("Invalid font")
+        response = input("Input: ")
         f = pyfiglet.Figlet(font=sys.argv[2])
         print(f.renderText(response))
     else:
