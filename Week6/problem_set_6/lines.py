@@ -29,3 +29,37 @@ or if the specified file’s name does not end in .py, or if the specified file 
 Assume that any line that starts with #, optionally preceded by whitespace, is a comment. (A docstring should not be considered a comment.) 
 Assume that any line that only contains whitespace is blank.
 '''
+
+#The task is to count the number of lines in a txt file as a measure of complexity.
+#It's going to have to read this file, then use a for loop to go through and count the lines (count()).
+#Then it would return the number of lines.
+#Exceptions here are if it starts with a # then that line doesn't count.
+#Should sys.exit if: More than just the file name as an argument, if it isn't a python file or if the file doesn't exist. (Use try & except?)
+
+#Psudo Code
+#Imports needed: sys (for sys.exit)
+#Try (to allow for error exits)
+#len(sys.argv) — check argument count , .endswith(".py") — check if it's a Python file, FileNotFoundError — exception for when a file doesn't exist
+
+#Base code created, but need to not count it if it starts with # (assuming there's a .startswith("#")) and if the entire line is blank we can use .strip() and see if == "".
+#Right, so its meant to take two arguments, with the 2nd one being the file you want it to work on.
+import sys
+
+def main():
+    try:
+        if len(sys.argv) != 2:
+            sys.exit("Too many arguments")
+        if not sys.argv[1].endswith(".py"):
+            sys.exit("file isn't a python file")
+        with open(sys.argv[1], "r") as file:
+            contents = file.readlines()
+            count = 0
+            for line in contents:
+                line = line.strip()
+                if not line.startswith("#") and not (line == ""):
+                    count += 1
+            print(count)
+    except FileNotFoundError:
+        sys.exit("Error: File Not Found")
+
+main()
