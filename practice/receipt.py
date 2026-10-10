@@ -26,4 +26,24 @@ Before you run it: predict what happens if the user types "four" for the price.
 (You don't need to handle it yet. That's Week 3. Just predict, then check.)
 
 Reflect: why should total() *return* a value rather than print it?
+Reflect: So it can pass the value to main() instead of just printing it to terminal
 '''
+
+def main():
+    price = parse_price(input("Price: "))
+    quantity = int(input("Quantity: "))
+    print(f"Total: £{total(price, quantity):.2f}")
+
+def parse_price(text):
+    text = text.strip("£")
+    return float(text)
+
+def total(price, quantity):
+    subtotal = price * quantity
+    if subtotal >= 50:
+        return subtotal * 0.9
+    else:
+        return subtotal
+
+if __name__ == "__main__":
+    main()
